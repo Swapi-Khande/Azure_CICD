@@ -39,3 +39,19 @@ steps:
   displayName: 'Publish Code Coverage Result'
   inputs:
     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/MyCoverage/coverage.cobertura.xml'
+
+- task: SonarCloudPrepare@4
+  inputs:
+    SonarQube: 'SonarCloud'
+    organization: 'test-org-sk'
+    scannerMode: 'dotnet'
+    projectKey: 'test-org-sk'
+    projectName: 'Test Org SK'
+
+- task: SonarCloudAnalyze@4
+  inputs:
+    jdkversion: 'JAVA_HOME'
+
+- task: SonarCloudPublish@4
+  inputs:
+    pollingTimeoutSec: '300'
