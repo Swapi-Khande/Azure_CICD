@@ -13,6 +13,7 @@ namespace TestWebApp.Controllers
             _logger = logger;
         }
 
+        public HomeController() { }
         public IActionResult Index()
         {
             return View();
@@ -28,6 +29,11 @@ namespace TestWebApp.Controllers
         {
             // Error View - Default 21
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public int Add(int x, int y)
+        {
+            return x+y;
         }
     }
 }
